@@ -15,10 +15,10 @@ class TocMachine(GraphMachine):
     def is_going_to_income(self, event):
         text = event.message.text
         if (text.split(' ')[0]=="Income:") and (len(text.split(' '))==2):
-            sid=text.split(' ')[1]
+            sid = text.split(' ')[1]
             value = int(sid)
             text = text.split(' ')[0]
-        print(text)   
+        print(sid)   
         return text.lower() == "income:"
 
     def is_going_to_expense(self, event):
