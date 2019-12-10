@@ -1,7 +1,7 @@
 from transitions.extensions import GraphMachine
 from utils import send_image_url,send_text_message
 
-int value
+value = 0
 
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
@@ -36,6 +36,8 @@ class TocMachine(GraphMachine):
         print("I'm entering income state")
         reply_token = event.reply_token
         send_text_message(reply_token, "\"Income:(value)\" ")
+        value = value+1
+        print(value)
         self.go_back()
 
     def on_exit_income(self):
