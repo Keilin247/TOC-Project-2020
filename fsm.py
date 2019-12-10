@@ -20,22 +20,18 @@ class TocMachine(GraphMachine):
 
     def on_enter_state1(self, event):
         print("I'm entering state1")
-
-        # reply_token = event.reply_token
+        reply_token = event.reply_token
         # send_text_message(reply_token, "Trigger state1")
-        message = ImageSendMessage(
-            original_content_url='https://www.w3schools.com/w3css/img_lights.jpg',
-            preview_image_url='https://www.w3schools.com/w3css/img_lights.jpg'
-        )
-        line_bot_api.reply_message(event.reply_token, message)
+       send_image_url=(reply_token,"https://www.w3schools.com/w3css/img_lights.jpg")
         self.go_back()
 
     def on_exit_state1(self):
         print("Leaving state1")
 
+
+
     def on_enter_state2(self, event):
         print("I'm entering state2")
-
         reply_token = event.reply_token
         send_text_message(reply_token, "Trigger state2")
         send_image_url=(reply_token,"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTofOKxN6YUlx8zEPGMpRxI1vRmpDxZzgHy4QVr4KIXMBk38Avb")
@@ -44,9 +40,10 @@ class TocMachine(GraphMachine):
     def on_exit_state2(self):
         print("Leaving state2")
     
+
+
     def on_enter_state3(self, event):
         print("I'm entering state3")
-
         reply_token = event.reply_token
         send_text_message(reply_token, "Trigger state3")
         self.go_back()
