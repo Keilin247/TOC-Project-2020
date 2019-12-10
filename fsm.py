@@ -1,6 +1,7 @@
 from transitions.extensions import GraphMachine
 from utils import send_image_url,send_text_message
 
+int value
 
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
@@ -12,20 +13,20 @@ class TocMachine(GraphMachine):
 
     def is_going_to_income(self, event):
         text = event.message.text
-        return text.lower() == "Income:" #+value
+        return text.lower() == "income:" #+value
 
     def is_going_to_expense(self, event):
         text = event.message.text
-        return text.lower() == "Expense:" # value  
+        return text.lower() == "expense:" #+value  
 
     def is_going_to_balance(self, event):
         text = event.message.text
-        return text.lower() == "Balance?"     
+        return text.lower() == "balance?"     
 
     def on_enter_info(self, event):
         print("I'm entering info state")
         reply_token = event.reply_token
-        send_text_message(reply_token, "\"Income:(value)\" for inputting income\n\"Expense:(value)\" for inputting expense\n\"Balance?\" for inputting income\n")
+        send_text_message(reply_token, "Enter:\n\"Income:(value)\" for inputting income\n\"Expense:(value)\" for inputting expense\n\"Balance?\" for inputting income")
         self.go_back()
 
     def on_exit_info(self):
