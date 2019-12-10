@@ -2,6 +2,7 @@ from transitions.extensions import GraphMachine
 from utils import send_image_url,send_text_message
 
 value = 0
+user_id = "YOUR USER ID"
 
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
