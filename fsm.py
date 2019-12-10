@@ -1,5 +1,5 @@
 from transitions.extensions import GraphMachine
-from utils import *
+from utils import send_image_url,send_text_message
 
 
 class TocMachine(GraphMachine):
