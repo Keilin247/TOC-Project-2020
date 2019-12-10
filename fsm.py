@@ -69,7 +69,7 @@ class TocMachine(GraphMachine):
     def on_enter_balance(self, event):
         print("I'm entering balance")
         reply_token = event.reply_token
-        #send_text_message(reply_token, "Trigger balance")
+        send_text_message(reply_token, "Trigger balance")
         send_image_url("U46b5bdcccc8124e05d79148943af39e5","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTofOKxN6YUlx8zEPGMpRxI1vRmpDxZzgHy4QVr4KIXMBk38Avb")
         self.go_back()
 
