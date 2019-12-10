@@ -23,7 +23,7 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token
         # send_text_message(reply_token, "Trigger state1")
        send_image_url=(reply_token,"https://www.w3schools.com/w3css/img_lights.jpg")
-        self.go_back()
+        #self.go_back()
 
     def on_exit_state1(self):
         print("Leaving state1")
