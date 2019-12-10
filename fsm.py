@@ -15,15 +15,15 @@ class TocMachine(GraphMachine):
     def is_going_to_income(self, event):
         text = event.message.text
         if (text.split(' ')[0]=="Income:") and (len(text.split(' '))==2):
-            #print(text.split(' ')[1])
             sid=text.split(' ')[1]
             value = int(sid)
+            text = text.split(' ')[0]
         #print(text.split(' ')[1])    
-        return text.lower() == "income:" + sid
+        return text.lower() == "income:"
 
     def is_going_to_expense(self, event):
         text = event.message.text
-        return text.lower() == "expense:" #+value  
+        return text.lower() == "expense: " #+value  
 
     def is_going_to_balance(self, event):
         text = event.message.text
@@ -32,7 +32,7 @@ class TocMachine(GraphMachine):
     def on_enter_info(self, event):
         print("I'm entering info state")
         reply_token = event.reply_token
-        send_text_message(reply_token, "Enter:\n\"Income:(value)\" for inputting income\n\"Expense:(value)\" for inputting expense\n\"Balance?\" for inputting income")
+        send_text_message(reply_token, "Enter:\n\"Income: (value)\" for inputting income\n\"Expense: (value)\" for inputting expense\n\"Balance?\" for inputting income")
         self.go_back()
 
     def on_exit_info(self):
@@ -42,7 +42,7 @@ class TocMachine(GraphMachine):
         
         print("I'm entering income state")
         reply_token = event.reply_token
-        send_text_message(reply_token, "\"Income:(value)\" ")
+        send_text_message(reply_token, "\"Income: \" " + value)
         print(value)
         self.go_back()
 
