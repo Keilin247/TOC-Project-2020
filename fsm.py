@@ -17,7 +17,7 @@ class TocMachine(GraphMachine):
             sid=text.split(' ')[1]
         #value = int(sid)
         
-        return text.lower() == "income:" + sid
+        return text.lower() == "income:"# + sid
 
     def is_going_to_expense(self, event):
         text = event.message.text
