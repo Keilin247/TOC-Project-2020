@@ -56,8 +56,9 @@ class TocMachine(GraphMachine):
     def on_enter_income(self, event):
         
         print("I'm entering income state")
-        reply_token = event.reply_token
-        send_text_message(reply_token, "Today's Income: " + str(inc))
+        reply_token = event.reply_token            
+        push_message("U46b5bdcccc8124e05d79148943af39e5", "Today's Income: " + str(inc))
+        push_message(event.reply_token, VideoSendMessage(original_content_url='https://ezgif.com/gif-to-mp4?url=https://i.pinimg.com/originals/cd/6e/96/cd6e965e0a5769560a5c88d471fe0cb1.gif',preview_image_url='https://i.pinimg.com/originals/cd/6e/96/cd6e965e0a5769560a5c88d471fe0cb1.gif'))
         self.go_back()
 
     def on_exit_income(self):
