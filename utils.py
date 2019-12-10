@@ -11,9 +11,6 @@ user_id = "YOUR USER ID"
 def send_text_message(reply_token, text):
     line_bot_api = LineBotApi(channel_access_token)
     line_bot_api.push_message(reply_token, TextSendMessage(text=text))
-    except LineBotApiError as e:
-    # error handle
-    raise e
 
     return "OK"
 
