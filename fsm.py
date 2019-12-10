@@ -1,6 +1,6 @@
 from transitions.extensions import GraphMachine
 from utils import send_image_url,send_text_message,push_message,send_sticker,send_gif
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup4
 
 value = 0
 sid = " "
