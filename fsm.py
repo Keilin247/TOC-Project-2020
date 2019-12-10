@@ -1,5 +1,6 @@
 from transitions.extensions import GraphMachine
 from utils import send_image_url,send_text_message,push_message,send_sticker,send_gif
+from bs4 import BeautifulSoup
 
 value = 0
 sid = " "
@@ -42,12 +43,16 @@ class TocMachine(GraphMachine):
 
     def is_going_to_balance(self, event):
         text = event.message.text
-        return text.lower() == "balance?"     
+        return text.lower() == "balance?"   
+
+    def is_going_to_info(self, event):
+        text = event.message.text
+        return text.lower() == "news"
 
     def on_enter_info(self, event):
         print("I'm entering info state")
         reply_token = event.reply_token
-        send_text_message(reply_token, "Enter:\n\"Income: (value)\" for inputting income\n\"Expense: (value)\" for inputting expense\n\"Balance?\" to check your current balance")
+        send_text_message(reply_token, "Enter:\n\"Income: (value)\" for inputting income\n\"Expense: (value)\" for inputting expense\n\"Balance?\" to check your current balance\n\"News\" to check out top news articles")
         self.go_back()
 
     def on_exit_info(self):
@@ -80,8 +85,33 @@ class TocMachine(GraphMachine):
         print("I'm entering balance")
         reply_token = event.reply_token
         push_message("U46b5bdcccc8124e05d79148943af39e5", "Current Balance: " + str(value))
-        send_image_url("U46b5bdcccc8124e05d79148943af39e5","https://media.istockphoto.com/vectors/businessman-hands-holding-passbook-with-no-balance-vector-id482975000?k=6&m=482975000&s=612x612&w=0&h=0pkEu9sjfUePhycuuXb3FnIl0iFe5pDwKwdRWlL7V-0=")
+        if value<0 :
+            push_message("U46b5bdcccc8124e05d79148943af39e5", "Oh No!You're in debt")
+            send_image_url("U46b5bdcccc8124e05d79148943af39e5","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTpvvHIC34cGGg7h_sDnMDPGJNnJBznoCaaFO5oOWIMC5CPVvYp")
+        else:    
+            send_image_url("U46b5bdcccc8124e05d79148943af39e5","https://media.istockphoto.com/vectors/businessman-hands-holding-passbook-with-no-balance-vector-id482975000?k=6&m=482975000&s=612x612&w=0&h=0pkEu9sjfUePhycuuXb3FnIl0iFe5pDwKwdRWlL7V-0=")
         self.go_back()
 
     def on_exit_balance(self):
         print("Leaving balance")
+
+    def on_enter_news(self, event):
+        print("I'm entering news")
+        reply_token = event.reply_token
+        push_message("U46b5bdcccc8124e05d79148943af39e5", "Current News:")
+        target_url = 'https://tw.appledaily.com/new/realtime'
+        print('Start parsing appleNews....')
+        rs = requests.session()
+        res = rs.get(target_url, verify=False)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        content = ""
+        for index, data in enumerate(soup.select('.rtddt a'), 0):
+            if index == 5:
+                return content
+            link = data['href']
+            content += '{}\n\n'.format(link)
+        push_message("U46b5bdcccc8124e05d79148943af39e5", content)
+        self.go_back()
+
+    def on_exit_news(self):
+        print("Leaving news")

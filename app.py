@@ -19,6 +19,7 @@ machine = TocMachine(
             "income",
             "expense",
             "balance"
+            "news"
             ],
     transitions=[
         { "trigger": "advance",
@@ -41,9 +42,14 @@ machine = TocMachine(
             "dest": "balance",
             "conditions": "is_going_to_balance",
         },
+         { "trigger": "advance",
+            "source": "user",
+            "dest": "news",
+            "conditions": "is_going_to_news",
+        },
 
         { "trigger": "go_back",
-          "source": ["info", "income","expense","balance"],
+          "source": ["info", "income","expense","balance","news"],
           "dest": "user"
           },
     ],
