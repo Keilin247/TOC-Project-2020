@@ -42,7 +42,7 @@ class TocMachine(GraphMachine):
         
         print("I'm entering income state")
         reply_token = event.reply_token
-        send_text_message(reply_token, "\"Income: \" " + value)
+        send_text_message(reply_token, "\"Income: \" " + sid)
         print(value)
         self.go_back()
 
