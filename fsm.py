@@ -14,8 +14,9 @@ class TocMachine(GraphMachine):
     def is_going_to_income(self, event):
         text = event.message.text
         if (text.split(' ')[0]=="Income:") and (len(text.split(' '))==2):
+            print(text.split(' ')[1])
             sid=text.split(' ')[1]
-        print(text.split(' ')[1])    
+        #print(text.split(' ')[1])    
         #value = int(sid)
         
         return text.lower() == "income:"# + sid
@@ -68,7 +69,8 @@ class TocMachine(GraphMachine):
     def on_enter_balance(self, event):
         print("I'm entering balance")
         reply_token = event.reply_token
-        send_text_message(reply_token, "Trigger balance")
+        #send_text_message(reply_token, "Trigger balance")
+        send_image_url(,"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTofOKxN6YUlx8zEPGMpRxI1vRmpDxZzgHy4QVr4KIXMBk38Avb")
         self.go_back()
 
     def on_exit_balance(self):
