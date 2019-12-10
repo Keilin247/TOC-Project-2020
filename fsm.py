@@ -1,5 +1,5 @@
 from transitions.extensions import GraphMachine
-from utils import send_image_url,send_text_message
+from utils import send_image_url,send_text_message,push_message
 
 value = 0
 sid = " "
@@ -18,7 +18,7 @@ class TocMachine(GraphMachine):
             sid=text.split(' ')[1]
             value = int(sid)
             text = text.split(' ')[0]
-        #print(text.split(' ')[1])    
+        print(text)   
         return text.lower() == "income:"
 
     def is_going_to_expense(self, event):
