@@ -20,7 +20,12 @@ def send_image_url(reply_token, img_url):
     
     return "sent image"
 
+def send_image_url(reply_token, img_url):
+    line_bot_api = LineBotApi(channel_access_token)
+    message = ImageSendMessage(original_content_url=img_url, preview_image_url=img_url)
+    line_bot_api.push_message("U46b5bdcccc8124e05d79148943af39e5", message)
     
+    return "sent sticker"
 
 def push_message(user_id, text):
     line_bot_api = LineBotApi(channel_access_token)
