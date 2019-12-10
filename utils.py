@@ -29,7 +29,7 @@ def send_sticker(reply_token):
 
 def send_gif(reply_token):
     line_bot_api = LineBotApi(channel_access_token)
-    message = VideoSendMessage(original_content_url='https://gcs-vimeo.akamaized.net/exp=1576034848~acl=%2A%2F871187021.mp4%2A~hmac=c2f1aa7bae26712b28a16f3e66ddc45a3de02f6e814351dfef8098bce4ccc8ed/vimeo-prod-skyfire-std-us/01/3507/9/242538649/871187021.mp4',preview_image_url='https://ak7.picdn.net/shutterstock/videos/1023393757/thumb/2.jpg'))
+    message = VideoSendMessage(original_content_url='https://gcs-vimeo.akamaized.net/exp=1576034848~acl=%2A%2F871187021.mp4%2A~hmac=c2f1aa7bae26712b28a16f3e66ddc45a3de02f6e814351dfef8098bce4ccc8ed/vimeo-prod-skyfire-std-us/01/3507/9/242538649/871187021.mp4',preview_image_url='https://ak7.picdn.net/shutterstock/videos/1023393757/thumb/2.jpg')
     line_bot_api.push_message("U46b5bdcccc8124e05d79148943af39e5", message)
     
     return "sent video"
