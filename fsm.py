@@ -14,11 +14,20 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return text.lower() == "go to state2"
 
+    def is_going_to_state3(self, event):
+        text = event.message.text
+        return text.lower() == "go to state3"    
+
     def on_enter_state1(self, event):
         print("I'm entering state1")
 
         reply_token = event.reply_token
         send_text_message(reply_token, "Trigger state1")
+        message = ImageSendMessage(
+            original_content_url='https://www.w3schools.com/w3css/img_lights.jpg',
+            preview_image_url='https://www.w3schools.com/w3css/img_lights.jpg'
+        )
+        line_bot_api.reply_message(event.reply_token, message)
         self.go_back()
 
     def on_exit_state1(self):
@@ -29,7 +38,22 @@ class TocMachine(GraphMachine):
 
         reply_token = event.reply_token
         send_text_message(reply_token, "Trigger state2")
+        message = VideoSendMessage(
+            original_content_url='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTofOKxN6YUlx8zEPGMpRxI1vRmpDxZzgHy4QVr4KIXMBk38Avb',
+            preview_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTofOKxN6YUlx8zEPGMpRxI1vRmpDxZzgHy4QVr4KIXMBk38Avb'
+        )
+        line_bot_api.reply_message(event.reply_token, message)
         self.go_back()
 
     def on_exit_state2(self):
         print("Leaving state2")
+    
+    def on_enter_state3(self, event):
+        print("I'm entering state2")
+
+        reply_token = event.reply_token
+        send_text_message(reply_token, "Trigger state3")
+        self.go_back()
+
+    def on_exit_state3(self):
+        print("Leaving state3")
