@@ -12,8 +12,11 @@ class TocMachine(GraphMachine):
         return text.lower() == "info"
 
     def is_going_to_income(self, event):
+        if (event.message.text.split(' ')[0]=="Income:") and (len(event.message.text.split(' '))==2):
+        sid=event.message.text.split(' ')[1]
+        value = int(sid)
         text = event.message.text
-        return text.lower() == "income:" #+value
+        return text.lower() == "income:" + sid
 
     def is_going_to_expense(self, event):
         text = event.message.text
@@ -33,11 +36,10 @@ class TocMachine(GraphMachine):
         print("Leaving info state")
 
     def on_enter_income(self, event):
-        nonlocal value
+        
         print("I'm entering income state")
         reply_token = event.reply_token
         send_text_message(reply_token, "\"Income:(value)\" ")
-        value = value+1
         print(value)
         self.go_back()
 
