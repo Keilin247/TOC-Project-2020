@@ -15,7 +15,8 @@ class TocMachine(GraphMachine):
         text = event.message.text
         if (text.split(' ')[0]=="Income:") and (len(text.split(' '))==2):
             sid=text.split(' ')[1]
-        #value = int(sid)
+        print(sid)    
+        value = int(sid)
         
         return text.lower() == "income:"# + sid
 
