@@ -6,48 +6,62 @@ class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
 
-    def is_going_to_state1(self, event):
+    def is_going_to_info(self, event):
         text = event.message.text
-        return text.lower() == "go to state1"
+        return text.lower() == "info"
 
-    def is_going_to_state2(self, event):
+    def is_going_to_income(self, event):
         text = event.message.text
-        return text.lower() == "go to state2"
+        return text.lower() == "Income:" #+value
 
-    def is_going_to_state3(self, event):
+    def is_going_to_expense(self, event):
         text = event.message.text
-        return text.lower() == "go to state3"    
+        return text.lower() == "Expense:" # value  
 
-    def on_enter_state1(self, event):
-        print("I'm entering state1")
+    def is_going_to_balance(self, event):
+        text = event.message.text
+        return text.lower() == "Balance?"     
+
+    def on_enter_info(self, event):
+        print("I'm entering info state")
         reply_token = event.reply_token
-        #message = ImageSendMessage(origional_content_url="https://www.w3schools.com/w3css/img_lights.jpg", preview_image_url="https://www.w3schools.com/w3css/img_lights.jpg")
-        #send_text_message(reply_token, "Trigger state1")
-        send_image_url(id,"https://www.w3schools.com/w3css/img_lights.jpg")
+        send_text_message(reply_token, "\"Income:(value)\" for inputting income\n\"Expense:(value)\" for inputting expense\n\"Balance?\" for inputting income\n")
         self.go_back()
 
-    def on_exit_state1(self):
-        print("Leaving state1")
+    def on_exit_info(self):
+        print("Leaving info state")
 
-
-
-    def on_enter_state2(self, event):
-        print("I'm entering state2")
+    def on_enter_income(self, event):
+        print("I'm entering income state")
         reply_token = event.reply_token
-        send_text_message(reply_token, "Trigger state2")
-        send_image_url(id,"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTofOKxN6YUlx8zEPGMpRxI1vRmpDxZzgHy4QVr4KIXMBk38Avb")
+        send_text_message(reply_token, "\"Income:(value)\" ")
         self.go_back()
 
-    def on_exit_state2(self):
-        print("Leaving state2")
+    def on_exit_income(self):
+        print("Leaving income state")
+
+    def on_enter_expense(self, event):
+        print("I'm entering expense")
+        reply_token = event.reply_token
+        #send_text_message(reply_token, "Trigger expense")
+        message = ImageSendMessage(
+            original_content_url='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTofOKxN6YUlx8zEPGMpRxI1vRmpDxZzgHy4QVr4KIXMBk38Avb',
+            preview_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTofOKxN6YUlx8zEPGMpRxI1vRmpDxZzgHy4QVr4KIXMBk38Avb'
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+        #send_image_url(,"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTofOKxN6YUlx8zEPGMpRxI1vRmpDxZzgHy4QVr4KIXMBk38Avb")
+        self.go_back()
+
+    def on_exit_expense(self):
+        print("Leaving expense")
     
 
 
-    def on_enter_state3(self, event):
-        print("I'm entering state3")
+    def on_enter_balance(self, event):
+        print("I'm entering balance")
         reply_token = event.reply_token
-        send_text_message(reply_token, "Trigger state3")
+        send_text_message(reply_token, "Trigger balance")
         self.go_back()
 
-    def on_exit_state3(self):
-        print("Leaving state3")
+    def on_exit_balance(self):
+        print("Leaving balance")

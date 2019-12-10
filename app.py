@@ -15,29 +15,35 @@ load_dotenv()
 
 machine = TocMachine(
     states=["user", 
-            "state1",
-            "state2",
-            "state3"
+            "info",
+            "income",
+            "expense",
+            "balance"
             ],
     transitions=[
         { "trigger": "advance",
             "source": "user",
-            "dest": "state1",
-            "conditions": "is_going_to_state1",
+            "dest": "info",
+            "conditions": "is_going_to_info",
         },
         { "trigger": "advance",
             "source": "user",
-            "dest": "state2",
-            "conditions": "is_going_to_state2",
+            "dest": "income",
+            "conditions": "is_going_to_income",
         },
         { "trigger": "advance",
             "source": "user",
-            "dest": "state3",
-            "conditions": "is_going_to_state3",
+            "dest": "expense",
+            "conditions": "is_going_to_expense",
+        },
+        { "trigger": "advance",
+            "source": "user",
+            "dest": "balance",
+            "conditions": "is_going_to_balance",
         },
 
         { "trigger": "go_back",
-          "source": ["state1", "state2","state3"],
+          "source": ["info", "income","expense","balance"],
           "dest": "user"
           },
     ],
@@ -115,7 +121,7 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
         if response == False:
-            send_text_message(event.reply_token, "Not Entering any State")
+            send_text_message(event.reply_token, "reply "info" for instructions)
 
     return "OK"
 
