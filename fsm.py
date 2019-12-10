@@ -33,6 +33,7 @@ class TocMachine(GraphMachine):
         print("Leaving info state")
 
     def on_enter_income(self, event):
+        nonlocal value
         print("I'm entering income state")
         reply_token = event.reply_token
         send_text_message(reply_token, "\"Income:(value)\" ")
