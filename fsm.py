@@ -12,10 +12,11 @@ class TocMachine(GraphMachine):
         return text.lower() == "info"
 
     def is_going_to_income(self, event):
-        if (event.message.text.split(' ')[0]=="Income:") and (len(event.message.text.split(' '))==2):
-            sid=event.message.text.split(' ')[1]
-        #value = int(sid)
         text = event.message.text
+        if (text.split(' ')[0]=="Income:") and (len(text.split(' '))==2):
+            sid=text.split(' ')[1]
+        #value = int(sid)
+        
         return text.lower() == "income:" + sid
 
     def is_going_to_expense(self, event):
