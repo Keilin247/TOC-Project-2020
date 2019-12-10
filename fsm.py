@@ -30,7 +30,7 @@ class TocMachine(GraphMachine):
 
     def is_going_to_expense(self, event):
         text = event.message.text
-        if (text.split(' ')[0]=="Income:") and (len(text.split(' '))==2):
+        if (text.split(' ')[0]=="Expense:") and (len(text.split(' '))==2):
             global eid
             global value
             global ex
@@ -47,7 +47,7 @@ class TocMachine(GraphMachine):
     def on_enter_info(self, event):
         print("I'm entering info state")
         reply_token = event.reply_token
-        send_text_message(reply_token, "Enter:\n\"Income: (value)\" for inputting income\n\"Expense: (value)\" for inputting expense\n\"Balance?\" for inputting income")
+        send_text_message(reply_token, "Enter:\n\"Income: (value)\" for inputting income\n\"Expense: (value)\" for inputting expense\n\"Balance?\" to check your current balance")
         self.go_back()
 
     def on_exit_info(self):
