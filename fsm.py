@@ -22,7 +22,7 @@ class TocMachine(GraphMachine):
         print("I'm entering state1")
         reply_token = event.reply_token
         #message = ImageSendMessage(origional_content_url="https://www.w3schools.com/w3css/img_lights.jpg", preview_image_url="https://www.w3schools.com/w3css/img_lights.jpg")
-        send_text_message(reply_token, "Trigger state1")
+        #send_text_message(reply_token, "Trigger state1")
         send_image_url(reply_token,"https://www.w3schools.com/w3css/img_lights.jpg")
         #self.go_back()
 
