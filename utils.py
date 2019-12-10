@@ -22,7 +22,11 @@ def send_image_url(reply_token, img_url):
 
     
 
+def push_message(user_id, text):
+    line_bot_api = LineBotApi(channel_access_token)
+    line_bot_api.push_message("U46b5bdcccc8124e05d79148943af39e5",TextSendMessage(text=text))
 
+    return "ok"
 """
 def send_button_message(id, text, buttons):
     pass

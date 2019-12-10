@@ -2,6 +2,7 @@ from transitions.extensions import GraphMachine
 from utils import send_image_url,send_text_message
 
 value = 0
+sid = " "
 
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
@@ -14,12 +15,12 @@ class TocMachine(GraphMachine):
     def is_going_to_income(self, event):
         text = event.message.text
         if (text.split(' ')[0]=="Income:") and (len(text.split(' '))==2):
-            print(text.split(' ')[1])
+            #print(text.split(' ')[1])
             sid=text.split(' ')[1]
+        value = int(sid)
         #print(text.split(' ')[1])    
-        #value = int(sid)
         
-        return text.lower() == "income:"# + sid
+        return text.lower() == "income:" + sid
 
     def is_going_to_expense(self, event):
         text = event.message.text
