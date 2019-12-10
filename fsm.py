@@ -17,9 +17,8 @@ class TocMachine(GraphMachine):
         if (text.split(' ')[0]=="Income:") and (len(text.split(' '))==2):
             #print(text.split(' ')[1])
             sid=text.split(' ')[1]
-        value = int(sid)
+            value = int(sid)
         #print(text.split(' ')[1])    
-        
         return text.lower() == "income:" + sid
 
     def is_going_to_expense(self, event):
