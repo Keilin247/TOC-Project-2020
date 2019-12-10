@@ -78,7 +78,7 @@ class TocMachine(GraphMachine):
     def on_enter_balance(self, event):
         print("I'm entering balance")
         reply_token = event.reply_token
-        push_message("U46b5bdcccc8124e05d79148943af39e5", "Current Balance: " + value)
+        push_message("U46b5bdcccc8124e05d79148943af39e5", "Current Balance: " + str(value))
         send_image_url("U46b5bdcccc8124e05d79148943af39e5","https://media.istockphoto.com/vectors/businessman-hands-holding-passbook-with-no-balance-vector-id482975000?k=6&m=482975000&s=612x612&w=0&h=0pkEu9sjfUePhycuuXb3FnIl0iFe5pDwKwdRWlL7V-0=")
         self.go_back()
 
