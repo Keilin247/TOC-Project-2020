@@ -1,5 +1,5 @@
 from transitions.extensions import GraphMachine
-from utils import send_image_url,send_text_message,push_message
+from utils import send_image_url,send_text_message,push_message,send_sticker,send_gif
 
 value = 0
 sid = " "
@@ -58,7 +58,7 @@ class TocMachine(GraphMachine):
         print("I'm entering income state")
         reply_token = event.reply_token            
         push_message("U46b5bdcccc8124e05d79148943af39e5", "Today's Income: " + str(inc))
-        push_message("U46b5bdcccc8124e05d79148943af39e5", VideoSendMessage(original_content_url='https://ezgif.com/gif-to-mp4?url=https://i.pinimg.com/originals/cd/6e/96/cd6e965e0a5769560a5c88d471fe0cb1.gif',preview_image_url='https://i.pinimg.com/originals/cd/6e/96/cd6e965e0a5769560a5c88d471fe0cb1.gif'))
+        send_gif("U46b5bdcccc8124e05d79148943af39e5")
         self.go_back()
 
     def on_exit_income(self):
@@ -68,7 +68,7 @@ class TocMachine(GraphMachine):
         print("I'm entering expense")
         reply_token = event.reply_token
         push_message("U46b5bdcccc8124e05d79148943af39e5", "Today's Expense: " + str(ex))
-        push_message("U46b5bdcccc8124e05d79148943af39e5", StickerSendMessage(package_id='11537',sticker_id='52002759'))
+        send_sticker("U46b5bdcccc8124e05d79148943af39e5")
         self.go_back()
 
     def on_exit_expense(self):
