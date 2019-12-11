@@ -42,7 +42,7 @@ machine = TocMachine(
             "conditions": "is_going_to_balance",
         },
         { "trigger": "go_back",
-            "source": ["income","expense","balance"],
+            "source": ["info","income","expense","balance"],
             "dest": "info"
         },
         { "trigger": "go_back",

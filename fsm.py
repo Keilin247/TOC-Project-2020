@@ -49,7 +49,7 @@ class TocMachine(GraphMachine):
         print("I'm entering info state")
         reply_token = event.reply_token
         send_text_message(reply_token, "Enter:\n\"Income: (value)\" for inputting income\n\"Expense: (value)\" for inputting expense\n\"Balance?\" to check your current balance")
-        
+        self.go_back()
 
     def on_exit_info(self):
         print("Leaving info state")
@@ -61,7 +61,7 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token            
         push_message("U46b5bdcccc8124e05d79148943af39e5", "Today's Income: " + str(inc))
         send_gif("U46b5bdcccc8124e05d79148943af39e5")
-        go_back()
+        self.go_back()
 
     def on_exit_income(self):
         print("Leaving income state")
