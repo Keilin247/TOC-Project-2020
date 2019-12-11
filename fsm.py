@@ -26,7 +26,7 @@ class TocMachine(GraphMachine):
             inc = inc + int(sid)
             value = value + int(sid)
             text = text.split(' ')[0]
-        return text.lower() == "income:"
+        return text.lower() == "income:" + str(value)
 
     def is_going_to_expense(self, event):
         text = event.message.text
@@ -85,8 +85,10 @@ class TocMachine(GraphMachine):
         if value<0 :
             push_message("U46b5bdcccc8124e05d79148943af39e5", "Oh No!You're in debt")
             send_image_url("U46b5bdcccc8124e05d79148943af39e5","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTpvvHIC34cGGg7h_sDnMDPGJNnJBznoCaaFO5oOWIMC5CPVvYp")
-        else:    
+        else if value = 0:    
             send_image_url("U46b5bdcccc8124e05d79148943af39e5","https://media.istockphoto.com/vectors/businessman-hands-holding-passbook-with-no-balance-vector-id482975000?k=6&m=482975000&s=612x612&w=0&h=0pkEu9sjfUePhycuuXb3FnIl0iFe5pDwKwdRWlL7V-0=")
+        else :
+            send_image_url("U46b5bdcccc8124e05d79148943af39e5","https://www.trzcacak.rs/myfile/detail/88-883619_death-money-clipart-9-clip-art-jar-save.png")
         self.go_back()
 
     def on_exit_balance(self):

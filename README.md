@@ -79,11 +79,26 @@ The initial state is set to `user`.
 Every time `user` state is triggered to `advance` to another state, it will `go_back` to `user` state after the bot replies corresponding message.
 
 * user
-	* Input: "go to state1"
-		* Reply: "I'm entering state1"
+	* Input: "Info"
+		* Reply: "Enter:
+				 "Income: (value)" for inputting income
+				 "Expense: (value)" for inputting expense
+				 "Balance?" to check your current balance"
+				 
+	* Input: "Income: (value)"
+		* Reply: "Today's Income: (total income value)"
+				 video:piggy bank
 
-	* Input: "go to state2"
-		* Reply: "I'm entering state2"
+	* Input: "Expense: (value)"
+		* Reply: "Today's Expense:(total expense value) "
+				 sticker: brown throwing money
+	
+	* Input: "Balance?"
+		* Reply: "Current Balance: (Current Balance) "
+				 picture: if balance is negative would send debt picture
+				 		  if balance is 0 would send a 0 balance bank book picture
+				 		  if balance is positive would send a savings jar picture
+
 
 ## Deploy
 Setting to deploy webhooks on Heroku.
