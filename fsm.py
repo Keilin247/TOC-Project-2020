@@ -49,7 +49,11 @@ class TocMachine(GraphMachine):
         print("I'm entering info state")
         reply_token = event.reply_token
         send_text_message(reply_token, "Enter:\n\"Income: (value)\" for inputting income\n\"Expense: (value)\" for inputting expense\n\"Balance?\" to check your current balance")
-        
+        self.go_back()
+
+    def on_exit_info(self):
+        print("Leaving info state")
+
 
     def on_enter_income(self, event):
         
