@@ -61,7 +61,7 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token            
         push_message("U46b5bdcccc8124e05d79148943af39e5", "Today's Income: " + str(inc))
         send_gif("U46b5bdcccc8124e05d79148943af39e5")
-        self.go_back()
+        go_back()
 
     def on_exit_income(self):
         print("Leaving income state")
