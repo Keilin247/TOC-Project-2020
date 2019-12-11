@@ -27,28 +27,25 @@ machine = TocMachine(
             "conditions": "is_going_to_info",
         },
         { "trigger": "advance",
-            "source": "info",
+            "source": "user",
             "dest": "income",
             "conditions": "is_going_to_income",
         },
         { "trigger": "advance",
-            "source": "info",
+            "source": "user",
             "dest": "expense",
             "conditions": "is_going_to_expense",
         },
         { "trigger": "advance",
-            "source": "info",
+            "source": "user",
             "dest": "balance",
             "conditions": "is_going_to_balance",
         },
+
         { "trigger": "go_back",
-            "source": ["info","income","expense","balance"],
-            "dest": "info"
-        },
-        { "trigger": "go_back",
-            "source": "user",
-            "dest": "user"
-        },
+          "source": ["info", "income","expense","balance"],
+          "dest": "user"
+          },
     ],
     initial="user",
     auto_transitions=False,
@@ -125,7 +122,6 @@ def webhook_handler():
         response = machine.advance(event)
         if response == False:
             send_text_message(event.reply_token, "reply \"info\" for instructions")
-            # machine.go_back(event)
 
     return "OK"
 
