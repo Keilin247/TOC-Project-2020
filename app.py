@@ -42,7 +42,7 @@ machine = TocMachine(
             "conditions": "is_going_to_balance",
         },
         { "trigger": "go_back",
-            "source": ["info","income","expense","balance"],
+            "source": ["income","expense","balance"],
             "dest": "info"
         },
         { "trigger": "go_back",
@@ -125,7 +125,7 @@ def webhook_handler():
         response = machine.advance(event)
         if response == False:
             send_text_message(event.reply_token, "reply \"info\" for instructions")
-            machine.go_back(event)
+            # machine.go_back(event)
 
     return "OK"
 
