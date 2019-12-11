@@ -121,7 +121,7 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
         if response == False:
-            send_text_message(event.reply_token, "reply \"info\" for instructions")
+            send_text_message(event.reply_token, "reply \"Info\" for instructions")
 
     return "OK"
 
