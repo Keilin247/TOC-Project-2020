@@ -43,10 +43,6 @@ machine = TocMachine(
         },
 
         { "trigger": "go_back",
-            "source": "info",
-            "dest": "user"
-        },
-        { "trigger": "go_back",
             "source": ["income","expense","balance"],
             "dest": "info"
         },
