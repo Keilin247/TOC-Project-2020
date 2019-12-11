@@ -41,12 +41,6 @@ machine = TocMachine(
             "dest": "balance",
             "conditions": "is_going_to_balance",
         },
-        { "trigger": "advance",
-            "source": "info",
-            "dest": "info",
-            "conditions": "is_going_to_info",
-        },
-
         { "trigger": "go_back",
             "source": ["info","income","expense","balance"],
             "dest": "info"

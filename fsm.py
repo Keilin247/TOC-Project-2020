@@ -74,8 +74,8 @@ class TocMachine(GraphMachine):
         send_sticker("U46b5bdcccc8124e05d79148943af39e5")
         self.go_back()
 
-    def on_exit_expense(self):
-        print("Leaving expense")
+    # def on_exit_expense(self):
+    #     print("Leaving expense")
 
 
     def on_enter_balance(self, event):
