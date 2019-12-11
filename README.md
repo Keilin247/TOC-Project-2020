@@ -84,7 +84,8 @@ Every time `user` state is triggered to `advance` to another state, it will `go_
 				 "Income: (value)" for inputting income
 				 "Expense: (value)" for inputting expense
 				 "Balance?" to check your current balance"
-				 
+
+* Info				 
 	* Input: "Income: (value)"
 		* Reply: "Today's Income: (total income value)"
 				 video:piggy bank
