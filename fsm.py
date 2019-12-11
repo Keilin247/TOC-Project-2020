@@ -1,11 +1,5 @@
-import requests
-import re
-import random
-import configparser
-
 from transitions.extensions import GraphMachine
 from utils import send_image_url,send_text_message,push_message,send_sticker,send_gif
-from bs4 import BeautifulSoup4
 
 value = 0
 sid = " "
@@ -48,20 +42,18 @@ class TocMachine(GraphMachine):
 
     def is_going_to_balance(self, event):
         text = event.message.text
-        return text.lower() == "balance?"   
+        return text.lower() == "balance?"     
 
-    def is_going_to_info(self, event):
-        text = event.message.text
-        return text.lower() == "news"
 
     def on_enter_info(self, event):
         print("I'm entering info state")
         reply_token = event.reply_token
-        send_text_message(reply_token, "Enter:\n\"Income: (value)\" for inputting income\n\"Expense: (value)\" for inputting expense\n\"Balance?\" to check your current balance\n\"News\" to check out top news articles")
+        send_text_message(reply_token, "Enter:\n\"Income: (value)\" for inputting income\n\"Expense: (value)\" for inputting expense\n\"Balance?\" to check your current balance")
         self.go_back()
 
     def on_exit_info(self):
         print("Leaving info state")
+
 
     def on_enter_income(self, event):
         
@@ -74,6 +66,7 @@ class TocMachine(GraphMachine):
     def on_exit_income(self):
         print("Leaving income state")
 
+
     def on_enter_expense(self, event):
         print("I'm entering expense")
         reply_token = event.reply_token
@@ -83,7 +76,6 @@ class TocMachine(GraphMachine):
 
     def on_exit_expense(self):
         print("Leaving expense")
-    
 
 
     def on_enter_balance(self, event):
@@ -99,24 +91,4 @@ class TocMachine(GraphMachine):
 
     def on_exit_balance(self):
         print("Leaving balance")
-
-    def on_enter_news(self, event):
-        print("I'm entering news")
-        reply_token = event.reply_token
-        push_message("U46b5bdcccc8124e05d79148943af39e5", "Current News:")
-        target_url = 'https://tw.appledaily.com/new/realtime'
-        print('Start parsing appleNews....')
-        rs = requests.session()
-        res = rs.get(target_url, verify=False)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        content = ""
-        for index, data in enumerate(soup.select('.rtddt a'), 0):
-            if index == 5:
-                return content
-            link = data['href']
-            content += '{}\n\n'.format(link)
-        push_message("U46b5bdcccc8124e05d79148943af39e5", content)
-        self.go_back()
-
-    def on_exit_news(self):
-        print("Leaving news")
+        

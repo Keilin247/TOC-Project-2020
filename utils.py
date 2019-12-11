@@ -39,7 +39,4 @@ def push_message(user_id, text):
     line_bot_api.push_message("U46b5bdcccc8124e05d79148943af39e5",TextSendMessage(text=text))
 
     return "ok"
-"""
-def send_button_message(id, text, buttons):
-    pass
-"""
+    
