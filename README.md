@@ -81,24 +81,23 @@ Every time `user` state is triggered to `advance` to another state, it will `go_
 * user
 	* Input: "Info"
 		* Reply: "Enter:
-				 "Income: (value)" for inputting income
-				 "Expense: (value)" for inputting expense
-				 "Balance?" to check your current balance"
-
-* Info				 
+		"Income: (value)" for inputting income
+		"Expense: (value)" for inputting expense
+		"Balance?" to check your current balance"
+		 
 	* Input: "Income: (value)"
 		* Reply: "Today's Income: (total income value)"
-				 video:piggy bank
+		* video:piggy bank
 
 	* Input: "Expense: (value)"
 		* Reply: "Today's Expense:(total expense value) "
-				 sticker: brown throwing money
+		* sticker: brown throwing money
 	
 	* Input: "Balance?"
 		* Reply: "Current Balance: (Current Balance) "
-				 picture: if balance is negative would send debt picture
-				 		  if balance is 0 would send a 0 balance bank book picture
-				 		  if balance is positive would send a savings jar picture
+		* picture: if balance is negative would send debt picture
+		if balance is 0 would send a 0 balance bank book picture
+		if balance is positive would send a savings jar picture
 
 
 ## Deploy
